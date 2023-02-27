@@ -6,18 +6,20 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CreatePost from './Pages/CreatePost';
 
 
 function App() {
   return (
-    <div classNamey="App">
-      <ToastContainer  autoClose = {1000} />
+    <div  className ="App">
 
+      <ToastContainer  autoClose = {1000} />
         <Navbar />
           <Routes> 
               <Route exact path = "/"       element = {<Home />}> </Route>
-              <Route exact path = "/login"  element = {<Login/>}> </Route>
-              <Route exact path = "/signup" element = {<Signup />}> </Route>
+              <Route  path = "/login"  element = {<Login/>}> </Route>
+              <Route  path = "/signup" element = {<Signup />}> </Route>
+              <Route  path = "/createpost" element = {<CreatePost  />}> </Route>
           </Routes>
     </div>
   );

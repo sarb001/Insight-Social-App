@@ -8,8 +8,10 @@ const mongoose = require('mongoose');
 app.use(express.json());
 
 require('./Models/User');
+require('./Models/Post');
 
 app.use(require('./Routes/auth'));
+app.use(require('./Routes/Post'));
 
 dotenv.config();
 const mongourl = process.env.MONGO_URL;

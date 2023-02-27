@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 const JsonToken = require('../Authorization/AuthRoute');
 
 
-
 router.get('/' , (req,res) => {
     res.send('Hello in the Router....')
 })
