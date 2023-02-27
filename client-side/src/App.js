@@ -1,10 +1,15 @@
 import React from 'react';
-import './App.css';
+import Navbar from './Components/Navbar';
+import {Routes ,Route } from 'react-router-dom';
+import Home from './Pages/Home';
 
 function App() {
   return (
     <div classNamey="App">
-       inthe aa
+        <Navbar />
+          <Routes> 
+              <Route exact path = "/" element = {<Home />}> </Route>
+          </Routes>
     </div>
   );
 }
