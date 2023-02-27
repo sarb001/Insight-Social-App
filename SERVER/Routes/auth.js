@@ -3,14 +3,14 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
+const JsonToken = require('../Authorization/AuthRoute');
 
-
-router.get('/routes' , (req,res) => {
+router.get('/' , (req,res) => {
     res.send('Hello in the Router....')
 })
 
-
 router.post('/signup' , async(req,res) => {
+
     try{
         const  { name ,email, password} = req.body;
 
@@ -42,6 +42,7 @@ router.post('/signup' , async(req,res) => {
                     email : user.email,
                     password:user.password,
                     name :user.name,
+                    token : JsonToken(user._id)     // token created 
                 })
             }else
             {
@@ -56,8 +57,38 @@ router.post('/signup' , async(req,res) => {
 })
 
 
-router.get('/login' , (req,res) => {
-    res.send('Login here ')
+router.get('/login' , async(req,res) => {
+   
+    try{
+
+        const {email , password} = req.body;
+        if(!email || !password)
+        {
+         res.status(400).json({error : 'Fill all the Fields'})
+        }
+    
+        const user = await User.findOne({email});
+        const comparepass = await bcrypt.compare(password,user.password);
+    
+        if(!comparepass){
+             res.status(400).json({error : 'Wrong user Credentials '});
+        }
+    
+        if(user && (comparepass))
+        {
+             res.status(200).json({
+                _id   : user._id,
+                name  : user.name,
+                email : user.email,
+                token : JsonToken(user._id)
+             })
+        }else
+        {
+           res.status(401).json({error : ' Invalid Email or Password '});
+        }
+    }catch(err){
+            res.json({error : ' Wrong Credentials '})
+    }
 })
 
 
