@@ -7,6 +7,10 @@ const mongoose = require('mongoose');
 
 app.use(express.json());
 
+require('./Models/User');
+
+app.use(require('./Routes/auth'));
+
 dotenv.config();
 const mongourl = process.env.MONGO_URL;
 
@@ -22,9 +26,8 @@ mongoose.connection.on('error' , (err) => {
 })
 
 
-
-app.get('/' , (req,res) => {
-    res.send('  Hello Here ')
+app.get('/hello' , (req,res) => {
+    res.send('  Hello Here ff')
 })
 
 app.listen(PORT , () => {
