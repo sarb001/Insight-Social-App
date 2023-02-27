@@ -5,6 +5,8 @@ const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
 const JsonToken = require('../Authorization/AuthRoute');
 
+
+
 router.get('/' , (req,res) => {
     res.send('Hello in the Router....')
 })
@@ -57,7 +59,7 @@ router.post('/signup' , async(req,res) => {
 })
 
 
-router.get('/login' , async(req,res) => {
+router.post('/login' , async(req,res) => {
    
     try{
 
@@ -71,7 +73,7 @@ router.get('/login' , async(req,res) => {
         const comparepass = await bcrypt.compare(password,user.password);
     
         if(!comparepass){
-             res.status(400).json({error : 'Wrong user Credentials '});
+             res.status(400).json({error : 'Wrong user Credentialssss...... '});
         }
     
         if(user && (comparepass))
@@ -87,10 +89,10 @@ router.get('/login' , async(req,res) => {
            res.status(401).json({error : ' Invalid Email or Password '});
         }
     }catch(err){
-            res.json({error : ' Wrong Credentials '})
+           console.log('cred error is ',err);
+            res.json({error : ' Wrong Credentialsrrrrrrrrrr '})
     }
 })
-
 
 
 

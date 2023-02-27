@@ -1,13 +1,37 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
     const [email,setemail] = useState("");
     const [password,setpassword] = useState("")
+    const navigate = useNavigate();
 
-     const handlelogin = () => {
-          
-     }
+      const handlelogin = async(e) => {
+
+        e.preventDefault();
+        if(!email || !password){
+          toast.warn(' Please Fill all the Fields ')
+        }
+  
+      try{
+        const config = {
+          headers : { 'Content-type' : 'application/json' },
+       }
+  
+        const {data} = await axios.post('/login' , {
+         email,password}, config);
+         console.log('data in Login is',data);
+         toast.success(' Successfully Logged In ')
+
+          navigate('/');
+      }catch(error)
+      {
+        toast.error(' Wrong Credentials Client  ')
+      }
+    }
 
   return (
     <div> 
