@@ -30,7 +30,7 @@ const Login = () => {
          console.log('data in Login is',data);
 
           localStorage.setItem('jwt',data.token)
-          localStorage.setItem('user',JSON.stringify(data))   // name ,email , token ,id
+          localStorage.setItem('user',JSON.stringify(data.user))   // name ,email , token ,id
 
          dispatch({type:"USER",payload :data.user})
          toast.success(' Successfully Logged In ')
