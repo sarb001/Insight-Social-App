@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { UserContext } from '../App';
 
 const Login = () => {
 
+    const { state ,dispatch } = useContext(UserContext);
     const [email,setemail] = useState("");
     const [password,setpassword] = useState("")
     const navigate = useNavigate();
@@ -21,9 +23,16 @@ const Login = () => {
           headers : { 'Content-type' : 'application/json' },
        }
   
-        const {data} = await axios.post('/login' , {
-         email,password}, config);
+        const {data} = await axios.post('/login' , 
+        {
+         email,password}, 
+         config);
          console.log('data in Login is',data);
+
+          localStorage.setItem('jwt',data.token)
+          localStorage.setItem('user',JSON.stringify(data))   // name ,email , token ,id
+
+         dispatch({type:"USER",payload :data.user})
          toast.success(' Successfully Logged In ')
 
           navigate('/');
