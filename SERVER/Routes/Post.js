@@ -42,5 +42,19 @@ router.post('/createpost' , async(req,res) => {
 })
 
 
+router.get('/allpost' , async(req,res) => {
+
+    try{
+        await Post.find().populate("postedBy","_id name")
+        .then(posts => res.json({posts}))
+
+    }catch(err)
+    {
+        console.log('error is',err);
+        res.json({error : ' Not able to Fetch All Posts '})
+    }
+
+})
+
 module.exports = router;
 
