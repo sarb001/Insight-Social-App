@@ -2,7 +2,6 @@ const  mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types
 
 // For creating Post 
-
 const postSchema = new mongoose.Schema({
     title: {
         type:String,
@@ -14,7 +13,7 @@ const postSchema = new mongoose.Schema({
     },
     photo : {
         type:String,
-        required :true
+        default : 'no photo'
     },
     postedBy : {
         type:ObjectId,

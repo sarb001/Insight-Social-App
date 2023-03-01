@@ -4,7 +4,7 @@ const router = express.Router();
 const User = mongoose.model('User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const JsonToken = require('../Authorization/AuthRoute');
+const JsonToken = require('../Authorization/AuthRoute');
 
 
 router.get('/' , (req,res) => {

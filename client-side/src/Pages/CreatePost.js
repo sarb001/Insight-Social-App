@@ -1,85 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from 'react'
 
 const CreatePost = () => {
-
-     const [title,settitle] = useState("");
-     const [body,setbody]   = useState("");
-     const [image,setimage] = useState("");
-     const [url,seturl] = useState("");
-     
-     const  navigate = useNavigate();
-
-     useEffect(() => {
-       
-      if(url)
-          {
-          try{
-              
-            const config = {
-                headers : {
-                    "Content-Type"  : "application/json",
-                    // 'Authorization' : `Bearer ${tokenhere}`,
-                }
-            }
-
-                axios.post('/createpost' ,{
-                title,
-                body,
-                photo : url,
-              },config)
-              .then(response => {  console.log('response iss' ,response)})
-              .catch(error => console.log('error iss',error))
-
-              toast.success(' Post is Created Successfully ')
-              navigate('/');
-      
-          }catch(error)
-            {
-                console.log(' err  while creating post is -',error );
-                toast.error(' Something Went Wrong')
-            }
-          }
-    },[url])
-
-
-    const handleimagepost = async() => {
-
-                const data = new FormData()
-
-                data.append("file",image)
-                data.append("upload_preset","insight-social-app")
-                data.append("cloud_name","damnzg3hr")
-
-                await  axios.post('https://api.cloudinary.com/v1_1/damnzg3hr/image/upload' 
-               ,data)
-                .then((res) => {
-                    console.log(' Image data is -',res.data.url);
-                    seturl(res.data.url)
-                }).catch((err) => console.log(' Image handle post error is  -',err));      
-    }
-
-
   return (
-    <div> 
-      CreatePost
-      <div className = "createpost-outercontainer" style = {{display:'flex',justifyContent:"center"}}>
-                    <div className = "createpost-container" style = {{width:'30%',padding:'3%',backgroundColor :'wheat'}}>
-                        <input type = "text" placeholder = 'Enter Title...'   value = {title}  onChange = {(e) =>  settitle(e.target.value)} />
-                        <input type = "text" placeholder = 'Enter Body...'    value = {body}   onChange = {(e) =>  setbody(e.target.value)} />
-                  
-                             <label htmlFor = "file-upload" id = "file-upload"> </label>
-                            <input  type = "file"   onChange = {(e) => setimage(e.target.files[0])}
-                             id = "file-upload" />
-                                
-                                <div style = {{padding:'8% 30%'}}>
-                                  <button   onClick = {handleimagepost}> Submit Post  </button>   
-                                </div>
-                    </div>
-            </div>
-    </div>
+    <div>CreatePostxx </div>
   )
 }
 

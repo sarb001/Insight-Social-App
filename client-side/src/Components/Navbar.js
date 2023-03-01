@@ -1,10 +1,7 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { UserContext } from '../App'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-
-   const {state,dispatch} = useContext(UserContext);
 
   return (
     <div> 
@@ -15,15 +12,13 @@ const Navbar = () => {
                   <div className = "second-nav-side"  
                   style = {{display:'grid',gridTemplateColumns:'1fr 1fr 1fr'}}>
 
-                      {state ? (
-                      <> 
+                     
                       <span> <Link to = "/createpost"> CreatePost  </Link> </span>
                       <span> <Link to = "/profile"> Profile  </Link> </span>
-                      </>) : (
-                      <>
+                
                        <span> <Link to = "/login"> Login  </Link> </span>
                        <span> <Link to = "/signup"> Signup  </Link> </span> 
-                      </>)}
+                   
                   </div>
             </div>
     </div>

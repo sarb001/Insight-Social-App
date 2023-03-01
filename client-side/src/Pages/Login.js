@@ -2,11 +2,11 @@ import axios from 'axios';
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { UserContext } from '../App';
+// import { UserContext } from '../App';
 
 const Login = () => {
 
-    const { state ,dispatch } = useContext(UserContext);
+    // const { state ,dispatch } = useContext(UserContext);
     const [email,setemail] = useState("");
     const [password,setpassword] = useState("")
     const navigate = useNavigate();
@@ -32,9 +32,7 @@ const Login = () => {
           localStorage.setItem('jwt',data.token)
           localStorage.setItem('user',JSON.stringify(data.user))   // name ,email , token ,id
 
-         dispatch({type:"USER",payload :data.user})
          toast.success(' Successfully Logged In ')
-
           navigate('/');
       }catch(error)
       {
