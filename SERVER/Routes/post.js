@@ -6,7 +6,7 @@ const router = express.Router();
 const requireLogin = require('../Middleware/RequireLogin');
 const Post = require('../Models/Post');
 
-
+// Fetch all Posts 
 router.get('/allpost' , (req,res) => {
     Post.find()
     .populate("postedBy" , "_id name")
@@ -18,6 +18,7 @@ router.get('/allpost' , (req,res) => {
     })
 })
 
+//  Logged user able to create Post 
 router.post('/createpost' , requireLogin ,(req,res) => {
     const {title,body} = req.body;
 
