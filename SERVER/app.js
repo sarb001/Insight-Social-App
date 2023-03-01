@@ -5,9 +5,13 @@ const PORT = 5000;
 
 const mongoose = require('mongoose');
 app.use(express.json());
+
 require('./Models/User')            // name,email,pass
+require('./Models/Post')            
+
 
 app.use(require('./Routes/auth'));
+app.use(require('./Routes/post'));
 
 
 dotenv.config();
