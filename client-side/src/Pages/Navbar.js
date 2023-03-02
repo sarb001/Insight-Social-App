@@ -12,6 +12,7 @@ const Navbar = () => {
                             <div className="second-navparts" style = {{display:'grid',gridTemplateColumns:'1fr 1fr',fontSize:'25px'}}>
                                 <span> <Link to = "/login"> Login  </Link>   </span>
                                 <span> <Link to = "/signup"> Signup  </Link>  </span>
+                                <span> <Link to = "/createpost"> CreatePost  </Link>  </span>
                             </div>
                     </div>
         </div>

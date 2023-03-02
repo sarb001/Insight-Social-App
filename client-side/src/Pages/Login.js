@@ -25,6 +25,9 @@ const Login = () => {
      const {data} = await axios.post('/login', {email,password}
      ,config);
 
+     console.log('data iss',data);
+     localStorage.setItem('jwt',data.token)
+     localStorage.setItem('user',JSON.stringify(data.user))
      toast.success(" Successfully Logged In ")
      navigate('/') 
 
@@ -32,14 +35,12 @@ const Login = () => {
     {
       toast.error(' Something Went Wrong')
     }
-
-
    }
 
   return (
     <div> 
             <div className = "mycard-outercontainer" style = {{padding:'5% 12%',width:'50%'}}> 
-                <div className = "mycard-container" style = {{backgroundColor:'whitesmoke',padding:'4%'}}>
+                <div className = "mycard-container"  style = {{backgroundColor:'whitesmoke',padding:'4%'}}>
 
                   <form onSubmit = {handlelogin}>
                     <input type = "text"  placeholder = "email"     value = {email}  
