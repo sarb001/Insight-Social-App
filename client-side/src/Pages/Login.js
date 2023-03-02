@@ -1,13 +1,15 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { UserContext } from '../App'
 
 const Login = () => {
 
   const [email,setemail]  = useState("")
   const [password,setpassword] = useState("")
   const navigate = useNavigate();
+  const {state,dispatch} = useContext(UserContext) 
 
    const handlelogin = async(e) => {
     e.preventDefault();
@@ -28,6 +30,9 @@ const Login = () => {
      console.log('data iss',data);
      localStorage.setItem('jwt',data.token)
      localStorage.setItem('user',JSON.stringify(data.user))
+     
+     dispatch({type:"USER",payload : data.user})
+
      toast.success(" Successfully Logged In ")
      navigate('/') 
 
