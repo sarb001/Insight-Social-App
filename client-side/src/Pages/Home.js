@@ -5,8 +5,8 @@ const Home = () => {
     <div>
           <div className = "home-outer-container" style = {{margin:'5% 15%'}}> 
               <h3> All posts are shown here </h3>
-            <div className = "home-container" style = {{backgroundColor:'lightseagreen',width:'40%',padding:'2%'}} >
-                <div className = "card-container">
+            <div className = "home-container"  >
+                <div className = "card-container" style = {{backgroundColor:'#8996a1',width:'40%',padding:'2%',margin:'4%'}} >
                     <div className = "card-content">
                         <h5> ramesh </h5>
                         <div className = "card-imge">
@@ -22,8 +22,8 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className = "home-container" style = {{backgroundColor:'lightseagreen',width:'40%'}} >
-                <div className = "card-container">
+            <div className = "home-container"  >
+                <div className = "card-container" style = {{backgroundColor:'#8996a1',width:'40%',padding:'2%',margin:'4%'}}>
                     <div className = "card-content">
                         <h5> ramesh </h5>
                         <div className = "card-imge">
