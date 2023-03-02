@@ -10,7 +10,7 @@ const Login = () => {
                     <input type = "text"  placeholder = "password" />
                     <button> Login  </button> 
                     <span>
-                      <Link to = "/login"> Don't have an Account ? </Link>
+                      <Link to = "/signup"> Don't have an Account ? </Link>
                     </span>
                 </div>
            </div>

@@ -6,6 +6,7 @@ import CreatePost from './pages/Createpost';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Navbar from './pages/Navbar';
+import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 
 
@@ -20,6 +21,7 @@ function App() {
                 <Route  path = "/login"  element = {<Login />}> </Route>
                 <Route  path = "/signup" element = {<Signup />}> </Route>
                 <Route  path = "/createpost" element = {<CreatePost />}> </Route>
+                <Route  path = "/profile" element = {<Profile />}> </Route>
               
               </Routes>
     </div>
