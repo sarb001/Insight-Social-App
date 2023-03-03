@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Navbar from './pages/Navbar';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import UserProfile from './pages/UserProfile';
 import { initialState, reducer } from './Reducers/Userreducers';
 
 
@@ -18,11 +19,11 @@ export const UserContext = createContext();
     
     useEffect(() => { 
         const user = JSON.parse(localStorage.getItem("user"))
-        if(user){
-          navigate('/')
-        }else{
-          navigate('/login')
-        }
+        // if(user){
+        //   navigate('/')
+        // }else{
+        //   navigate('/login')
+        // }
     },[])
 
     return( 
@@ -32,7 +33,8 @@ export const UserContext = createContext();
           <Route  path = "/login"  element = {<Login />}> </Route>
           <Route  path = "/signup" element = {<Signup />}> </Route>
           <Route  path = "/createpost" element = {<CreatePost />}> </Route>
-          <Route  path = "/profile" element = {<Profile />}> </Route>
+          <Route exact  path = "/profile" element = {<Profile />}> </Route>
+          <Route  path = "/profile/:userid" element = {<UserProfile  />}> </Route>
       </Routes>
       </>
     )

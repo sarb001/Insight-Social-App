@@ -12,6 +12,7 @@ require('./Models/Post')
 
 app.use(require('./Routes/auth'));
 app.use(require('./Routes/post'));
+app.use(require('./Routes/user'));
 
 
 dotenv.config();

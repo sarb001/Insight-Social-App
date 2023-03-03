@@ -28,23 +28,6 @@ const Profile = () => {
                   </div>
               </div>
 
-
-                {/* <div className="profile-container">
-                    <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg" alt = "profile-img" style = {{width:'10%',borderRadius:'35%'}} /></span>
-                     <span> 
-                      <span> ramesh verma  </span>   
-                      <span> 40 posts  </span>   
-                      <span> 40 followers  </span>   
-                      <span> 40 following  </span>   
-                        
-                     </span>
-                </div>
-
-                <div className="profile-all-pics" style = {{display:'grid',gridTemplateColumns:'400px 400px 400px',margin:'8%'}}>
-                    <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  alt = "profile-pic-one"   style = {{width:'50%'}} /> </span> 
-                    <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  alt = "profile-pic-one"   style = {{width:'50%'}}/> </span> 
-                    <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  alt = "profile-pic-one"   style = {{width:'50%'}}/> </span> 
-                </div>   */}
      </div>
     </div>
   )
