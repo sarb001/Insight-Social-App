@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useContext } from 'react';
 import { toast } from 'react-toastify';
+import {  UserContext} from '../App';
 
 const Home = () => {
 
    const [data,setdata] = useState([]);
+   const {state,dispatch} =  useContext(UserContext)
+
 
    useEffect(() => {
      const config = {
@@ -46,7 +49,6 @@ const Home = () => {
           })
    }
 
-   
    const unlikepost = (id) => {
     const config = {
       headers : {
@@ -75,11 +77,42 @@ const Home = () => {
       
    }
 
+   const makecomment = (text,postId) => {
+   
+    const config = {
+      headers : {
+        "Content-Type": "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem('jwt')
+      }
+     }
+
+     axios.put('/comment' , {
+        postId : postId,
+        text : text 
+     },config)
+     .then(res => {
+         console.log(' Commented Done -',res)
+         const newdata = data.map(item => {
+           if(item._id == res._id){
+             return res
+            }else{
+              return item
+            }
+          })
+          toast.success(' Comment Done  ')
+          setdata(newdata)
+   }).catch(err => {
+       console.log('error is',err);
+   })
+   }
+
   return (
     <div>
 
            <div className = "home-outer-container" style = {{margin:'5% 15%',cursor:'pointer'}}> 
-              <h3> All posts are shown here </h3>
+              <h3> All Public posts are shown here </h3>
+
+              {console.log('data in phase is - ',data)}
 
               {data.map((item) => {
                 return(
@@ -94,17 +127,35 @@ const Home = () => {
                               <div className="card-content">
                                 <span>   <i className='material-icons' style = {{color:'red'}}> favorite </i>
                                 </span>
-                                <div className="likes">
-                                  <span> <i className='material-icons' style = {{color:'black'}}  
-                                   onClick = {() => likepost(item._id)} > thumb_up </i> </span>
-                                  <span> <i className='material-icons' style = {{color:'black'}}  
-                                   onClick = {() => unlikepost(item._id)}> thumb_down </i> </span>
+                                <div className = "likes">
+                                  
+                                    <span> <i className='material-icons' style = {{color:'black'}}  
+                                     onClick = {() => likepost(item._id)} >  thumb_up </i> </span>
+                                 
+                                    <span> <i className='material-icons' style = {{color:'black'}}  
+                                    onClick = {() => unlikepost(item._id)}> thumb_down </i> </span>
+                                
                                 </div>
                               
                                 <h6>  {item.likes.length} </h6> 
                                 <h6>  {item.title} </h6> 
                                 <h4>   {item.body}  </h4>
+
+                                  {item.comments.map(record => {
+                                     return(
+                                      <>
+                                      <b> {record.text} </b>
+                                      <span> By - </span>
+                                      </>
+                                     )
+                                  })}
+
+                                <form onSubmit = {(e) => {
+                                      e.preventDefault() 
+                                      makecomment(e.target[0].value,item._id)
+                                  }}>
                                 <input type = "text" placeholder='Add a Comment' />
+                                </form>
                               </div>
                           </div>
                       </div>
