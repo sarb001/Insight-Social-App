@@ -6,6 +6,10 @@ const Navbar = () => {
 
   const {state,dispatch} = useContext(UserContext);
 
+  const handlelogout = () => {
+       localStorage.clear()
+       dispatch({type:"CLEAR"})
+  }
 
   return (
     <div>
@@ -20,6 +24,7 @@ const Navbar = () => {
                                           <>  
                                         <li> <Link to = "/createpost"> CreatePost  </Link>  </li>
                                         <li> <Link to = "/profile"> Profile   </Link>  </li>
+                                        <li>  <button onClick={() => handlelogout()}> Logout </button>  </li>
                                           </>
                                           ) : 
                                           <> 
