@@ -34,11 +34,12 @@ const UserProfile = () => {
                  <div className="profile-container" style = {{margin:'5% 20%'}}>
                     <div className="first-profile-side" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
                         <div className="profile-img">
-                            <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'40%'}} /> </span> 
+                            <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg" alt = "Profile-img" style = {{width:'40%'}} /> </span> 
                         </div>
                         <div className="profile-data">
                             <div className="profile-data-name">
-                            <span style =  {{fontSize:'28px'}}> ramesh  verma  </span>
+                            <span style =  {{fontSize:'28px'}}>  {userprofile?.data.user.name} </span>
+                            <br />
                             <span style =  {{fontSize:'28px'}}> {userprofile?.data.user.email} </span>
                             </div>
                             <div className="profile-data-details">
@@ -50,10 +51,18 @@ const UserProfile = () => {
 
                     </div>
                     <div className="second-profile-side" style = {{paddingTop:'12%',display:'flex'}}> 
-                        <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
-                        <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
-                        <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
-                    </div>
+                        {  
+                          userprofile.data.posts.map((item) => {
+                              return(
+                                  <>
+                                 <div style = {{margin:'4% 5%'}}>
+                                  <span> <img src = {item.photo} style = {{width:'40%'}}/> </span>
+                                 </div>
+                                </>
+                             )
+                          })
+                        }
+                     </div>
                 </div>
 
         </>) : ( 
