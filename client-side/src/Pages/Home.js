@@ -106,6 +106,28 @@ const Home = () => {
    })
    }
 
+   const deletepost = (postid) => {
+
+    const config = {
+      headers : {
+        "Content-Type": "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem('jwt')
+      }
+     }
+
+     axios.delete(`/deletepost/${postid}` ,config)
+     .then(res =>  {
+        console.log('  post deleted is ',res);
+        const newdata = data.filter(item => {
+           return item._id !== res._id
+        })
+        toast.success(' Post is Deleted Now ')
+        setdata(newdata)
+     })
+
+   }
+
+
   return (
     <div>
 
@@ -119,13 +141,23 @@ const Home = () => {
                   <>
                   <div className = "home-container"  >
                       <div className = "card-container" style = {{backgroundColor:'#8996a1',width:'40%',padding:'2%',margin:'4%'}} >
-                          <div className = "card-content">
-                              <h5>  {item.postedBy.name} </h5>
+                          <div className = "card-content" >
+                                <div className="first-side" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
+                                <h5>  {item.postedBy.name} </h5>
+                                <span> 
+                              
+                                   <i className='material-icons' style = {{color:'black'}} 
+                                   onClick = {() => deletepost(item._id)} > delete </i>
+                                  
+                                  
+                                </span> 
+                                 </div>
                               <div className = "card-imge">
                                 <span> <img src = {item.photo} style = {{width:'80%'}} /> </span>  
                               </div>
                               <div className="card-content">
-                                <span>   <i className='material-icons' style = {{color:'red'}}> favorite </i>
+                                <span>  
+                                   <i className='material-icons' style = {{color:'red'}}> favorite </i>
                                 </span>
                                 <div className = "likes">
                                   
