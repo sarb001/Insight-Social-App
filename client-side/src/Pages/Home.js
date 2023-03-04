@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState , useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import {  UserContext} from '../App';
 
@@ -143,7 +144,9 @@ const Home = () => {
                       <div className = "card-container" style = {{backgroundColor:'#8996a1',width:'40%',padding:'2%',margin:'4%'}} >
                           <div className = "card-content" >
                                 <div className="first-side" style = {{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
-                                <h5>  {item.postedBy.name} </h5>
+                                <Link to = {`/profile/${item.postedBy._id}`}> 
+                                  <h5>  {item.postedBy.name} </h5>
+                                </Link>
                                 <span> 
                               
                                    <i className='material-icons' style = {{color:'black'}} 
