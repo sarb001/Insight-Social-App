@@ -8,7 +8,9 @@ const UserProfile = () => {
 
     const { userid } = useParams();
     const [userprofile,setuserprofile] = useState(null);
+    const [showfollow,setshowfollow] = useState(true);
     const {state,dispatch} = useContext(UserContext);
+    
     
     console.log('user id is --',userid);
 
@@ -42,21 +44,54 @@ const UserProfile = () => {
             const res = await axios.put('/follow' , {
                 followId : userid
             },config)
-            .then(resdata => {
-                 console.log(' FOllow  user on working is --',resdata);
-                 localStorage.setItem('user',JSON.stringify(resdata.data))
+            .then(data => {
+                 console.log(' FOllow  user on working is --',data);
+                 dispatch({type:'UPDATE',payload : {following:data.following,followers:data.followers}})
+                 localStorage.setItem('user',JSON.stringify(data))
                  setuserprofile((prevstate) => {
                      return {
                         ...prevstate,
                         user : {
                             ...prevstate.user,
-                            followers : [...prevstate.user.followers,resdata.data._id]
+                            followers : [...prevstate.data.user.followers,data._id]
                         }
                      }
                  })
+                 setshowfollow(false);
             })
 
     }
+
+
+    // unfollow user 
+
+    const unfollowuser = async() => {
+        const config = {
+            headers : {
+                "Content-Type" :"application/json",
+               "Authorization" : "Bearer " + localStorage.getItem('jwt')
+            }
+        }
+
+        const res = await axios.put('/unfollow' , {
+            unfollowId : userid
+        },config)
+        .then(data => {
+             console.log(' FOllow  user on working is --',data);
+             dispatch({type:'UPDATE',payload : {following:data.following,followers:data.followers}})
+             localStorage.setItem('user',JSON.stringify(data))
+             setuserprofile((prevstate) => {
+                 return {
+                    ...prevstate,
+                    user : {
+                        ...prevstate.user,
+                        followers : [...prevstate.user.followers,data._id]
+                    }
+                 }
+             })
+        })
+
+}
 
 
   return (
@@ -79,9 +114,19 @@ const UserProfile = () => {
                             <span style =  {{fontSize:'20px'}}> {userprofile.data.posts.length} posts </span>
                             <span style =  {{fontSize:'20px'}}> {userprofile.data.user.followers.length}  followers </span>
                             <span style =  {{fontSize:'20px'}}> {userprofile.data.user.following.length}  following </span>
-                                <div className = "showing-btn" style = {{paddingTop:'5%'}}>
-                                        <button style = {{padding:'2%'}} onClick = {() => followuser()}>  FOLLOW  </button>
-                                </div>
+
+                                 {showfollow ? (
+                                 <>
+                                        <div className = "showing-btn" style = {{paddingTop:'5%'}}>
+                                                <button style = {{padding:'2%'}} onClick = {() => followuser()}>  FOLLOW  </button>
+                                        </div>
+                                 </>) : (
+                                 <>
+                                        <div className = "showing-btn" style = {{paddingTop:'5%'}}>
+                                                <button style = {{padding:'2%'}} onClick = {() => followuser()}>  FOLLOW  </button>
+                                        </div>
+                                 </>)}
+
                             </div>
                         </div>
 
