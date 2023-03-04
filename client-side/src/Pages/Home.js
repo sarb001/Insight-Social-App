@@ -152,7 +152,6 @@ const Home = () => {
                                    <i className='material-icons' style = {{color:'black'}} 
                                    onClick = {() => deletepost(item._id)} > delete </i>
                                   
-                                  
                                 </span> 
                                  </div>
                               <div className = "card-imge">
