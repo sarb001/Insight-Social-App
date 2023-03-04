@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../App'
 
 const Navbar = () => {
 
   const {state,dispatch} = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handlelogout = () => {
        localStorage.clear()
        dispatch({type:"CLEAR"})
+       navigate('/login')
   }
 
   return (
@@ -23,7 +25,7 @@ const Navbar = () => {
                                     {state ? (
                                           <>  
                                         <li> <Link to = "/createpost"> CreatePost  </Link>  </li>
-                                        <li> <Link to = "/profile"> Profile   </Link>  </li>
+                                        <li> <Link to = "/profile">    Profile   </Link>  </li>
                                         <li>  <button onClick={() => handlelogout()}> Logout </button>  </li>
                                           </>
                                           ) : 

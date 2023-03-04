@@ -19,6 +19,8 @@ export const UserContext = createContext();
     
     useEffect(() => { 
         const user = JSON.parse(localStorage.getItem("user"))
+
+        console.log('  useffect runnig i');
         // if(user){
         //   navigate('/')
         // }else{
@@ -29,11 +31,11 @@ export const UserContext = createContext();
     return( 
       <>
       <Routes>
-          <Route exact path = "/"   element = {<Home />}> </Route>
-          <Route  path = "/login"  element = {<Login />}> </Route>
-          <Route  path = "/signup" element = {<Signup />}> </Route>
-          <Route  path = "/createpost" element = {<CreatePost />}> </Route>
-          <Route exact  path = "/profile" element = {<Profile />}> </Route>
+          <Route exact path = "/"         element = {<Home />}> </Route>
+          <Route  path = "/login"         element = {<Login />}> </Route>
+          <Route  path = "/signup"        element = {<Signup />}> </Route>
+          <Route  path = "/createpost"    element = {<CreatePost />}> </Route>
+          <Route  path = "/profile"       element = {<Profile />}> </Route>
           <Route  path = "/profile/:userid" element = {<UserProfile  />}> </Route>
       </Routes>
       </>

@@ -1,6 +1,29 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../App';
 
 const Profile = () => {
+
+  const [mypics,setpics] = useState([]);
+  const {state,dispatch} = useContext(UserContext);
+
+  console.log('state isss -',state);
+
+  useEffect(() => {
+    const config = {
+      headers : {
+        "Content-Type"  : "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem('jwt')
+      }
+    }
+
+      axios.get('/mypost' , config)
+      .then((result) => {  console.log(' myposts are  ',result);
+       setpics(result.data.mypost)
+      })
+ },[])
+
+
   return (
     <div> 
      <div className="profile-outer-container" >
@@ -11,20 +34,26 @@ const Profile = () => {
                       </div>
                       <div className="profile-data">
                          <div className="profile-data-name">
-                           <span style =  {{fontSize:'28px'}}> ramesh  verma  </span>
+                           <span style =  {{fontSize:'28px'}}> Name is-  {state && state.name} </span>
                          </div>
                          <div className="profile-data-details">
-                          <span style =  {{fontSize:'20px'}}> 40 posts </span>
-                          <span style =  {{fontSize:'20px'}}> 40 followers </span>
-                          <span style =  {{fontSize:'20px'}}> 40 following </span>
+                          <span style =  {{fontSize:'20px'}}> {mypics.length} posts </span>
+                          <span style =  {{fontSize:'20px'}}> 00   followers </span>
+                          <span style =  {{fontSize:'20px'}}> 00  following </span>
                          </div>
                       </div>
 
                    </div>
                   <div className="second-profile-side" style = {{paddingTop:'12%',display:'flex'}}> 
-                     <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
-                     <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
-                     <span> <img src = "/antoine-transon-z8mpTt1sdC8-unsplash.jpg"  style = {{width:'70%'}}/> </span>
+
+                     {mypics && mypics.map((item) => {
+                          return(
+                            <>
+                             <span> <img key = {item._id} src = {item.photo}  style = {{width:'70%'}}/> </span>
+                            </>
+                          )
+                     })}
+
                   </div>
               </div>
 
