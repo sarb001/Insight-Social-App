@@ -1,13 +1,13 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../App';
+import React, { useContext, useEffect, useState } from 'react';
+import { MainContext } from '../Reducers/Context';
 
 const Profile = () => {
 
   const [mypics,setpics] = useState([]);
-  const {state,dispatch} = useContext(UserContext);
+  const {state,dispatch} = useContext(MainContext);
 
-  console.log('state isss -',state);
+  console.log('state in Profile iss -',state);
 
   useEffect(() => {
     const config = {

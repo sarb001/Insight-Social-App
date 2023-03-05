@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../App'
+import { MainContext } from '../Reducers/Context';
 
 const Navbar = () => {
 
-  const {state,dispatch} = useContext(UserContext);
+  const {state,dispatch} = useContext(MainContext);
+  console.log('state in nav is ',state);
   const navigate = useNavigate();
 
   const handlelogout = () => {

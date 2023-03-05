@@ -2,14 +2,14 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { UserContext } from '../App'
+import { MainContext } from '../Reducers/Context'
 
 const Login = () => {
 
   const [email,setemail]  = useState("")
   const [password,setpassword] = useState("")
   const navigate = useNavigate();
-  const {state,dispatch} = useContext(UserContext) 
+  const {state,dispatch} = useContext(MainContext) 
 
    const handlelogin = async(e) => {
     e.preventDefault();

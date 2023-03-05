@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { useEffect, useState , useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import {  UserContext} from '../App';
+import { MainContext } from '../Reducers/Context';
 
 const Home = () => {
 
    const [data,setdata] = useState([]);
-   const {state,dispatch} =  useContext(UserContext)
+   const {state,dispatch} =  useContext(MainContext)
 
 
    useEffect(() => {

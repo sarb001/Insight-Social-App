@@ -2,37 +2,36 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
-import { UserContext } from '../App';
+import { MainContext } from '../Reducers/Context';
 
 
 const UserProfile = () => {
-
     const { userid } = useParams();
-    // const [userprofile,setuserprofile] = useState(null);
-    // const [showfollow,setshowfollow] = useState(true);
+    const data = (localStorage.getItem('user'));
 
-    const {state,dispatch} = useContext(UserContext);
-    
-    console.log('state issssss -',state);
+    const [userprofile,setuserprofile] = useState(null);
+    const {state,dispatch} = useContext(MainContext);
+    console.log('state issssss -',state);     // showing null 
+
     
 //     console.log('user id is --',userid);
 
-//     useEffect(() => {
+    // useEffect(() => {
          
-//          const config = {
-//             headers : {
-//                 "Content-Type" : 'application/json',
-//                 "Authorization" : "Bearer " + localStorage.getItem('jwt')
-//             }
-//          }
+    //      const config = {
+    //         headers : {
+    //             "Content-Type" : 'application/json',
+    //             "Authorization" : "Bearer " + localStorage.getItem('jwt')
+    //         }
+    //      }
 
-//          const response = axios.get(`/user/${userid}`,config)
-//          .then(res => {
-//             console.log(' Specific user id ---',res)
-//             setuserprofile(res)
-//          })
+    //      const response = axios.get(`/user/${userid}`,config)
+    //      .then(res => {
+    //         console.log(' Specific user id ---',res)
+    //         setuserprofile(res)
+    //      })
 
-//     },[])
+    // },[])
 
 //     // follow user
 
@@ -66,9 +65,7 @@ const UserProfile = () => {
 
 //     }
 
-
 //     // unfollow user 
-
 //     const unfollowuser = async() => {
 //         const config = {
 //             headers : {
@@ -102,10 +99,12 @@ const UserProfile = () => {
 
   return (
     <>
-    
-    <h5>  here in Profiel  </h5>
+    <h5>  here in UserProfile is -  </h5>
     <h5>  user id is - {userid}  </h5>
     </>
+
+
+
     // <div> 
     //  <div className="profile-outer-container" >
     //     { userprofile ? (

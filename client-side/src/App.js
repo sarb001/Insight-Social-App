@@ -1,4 +1,4 @@
-import React, { createContext , useEffect, useReducer }  from 'react';
+import React, { createContext , useContext, useEffect, useReducer }  from 'react';
 import {Routes ,Route, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,17 +9,17 @@ import Navbar from './pages/Navbar';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import UserProfile from './pages/UserProfile';
-import { initialState, reducer } from './Reducers/Userreducers';
-
-
-export const UserContext = createContext();
+import { MainContext } from './Reducers/Context';
 
   const Routing = () => {
-    const navigate  = useNavigate();
-    
-    useEffect(() => { 
-        const user = JSON.parse(localStorage.getItem("user"))
 
+    const navigate  = useNavigate();
+    const {state,dispatch} = useContext(MainContext);
+     
+
+    useEffect(() => { 
+    
+     const user = JSON.parse(localStorage.getItem("user"))
         console.log('  useffect runnig i');
         // if(user){
         //   navigate('/')
@@ -31,7 +31,7 @@ export const UserContext = createContext();
     return( 
       <>
       <Routes>
-          <Route exact path = "/"         element = {<Home />}> </Route>
+          <Route  exact path = "/"        element = {<Home />}> </Route>
           <Route  path = "/login"         element = {<Login />}> </Route>
           <Route  path = "/signup"        element = {<Signup />}> </Route>
           <Route  path = "/createpost"    element = {<CreatePost />}> </Route>
@@ -44,15 +44,11 @@ export const UserContext = createContext();
 
 function App() {
 
-   const [state,dispatch] = useReducer(reducer,initialState)
-
    return (
     <div  className = "App">
-      <UserContext.Provider value = {{state,dispatch}} >
         <ToastContainer  autoClose = {1000} />
             <Navbar />
-                  <Routing /> 
-      </UserContext.Provider>
+            <Routing /> 
     </div>
   );
 }
