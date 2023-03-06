@@ -15,10 +15,8 @@ import { MainContext } from './Reducers/Context';
 
     const navigate  = useNavigate();
     const {state,dispatch} = useContext(MainContext);
-     
 
     useEffect(() => { 
-    
      const user = JSON.parse(localStorage.getItem("user"))
         console.log('  useffect runnig i');
         // if(user){
