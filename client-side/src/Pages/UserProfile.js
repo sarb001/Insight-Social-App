@@ -7,9 +7,9 @@ import { MainContext } from '../Reducers/Context';
 
 const UserProfile = () => {
     const { userid } = useParams();
-    const data = (localStorage.getItem('user'));
+    // const data = (localStorage.getItem('user'));
 
-    const [userprofile,setuserprofile] = useState(null);
+    // const [userprofile,setuserprofile] = useState(null);
     const {state,dispatch} = useContext(MainContext);
     console.log('state issssss -',state);     // showing null 
 
@@ -96,13 +96,14 @@ const UserProfile = () => {
 
 // }
 
+   const stateuserprofile = JSON.stringify(state);
+
 
   return (
     <>
-    <h5>  here in UserProfile ssssis -  </h5>
+    <h5>  here in UserProfile ssssis -  {stateuserprofile}  </h5>
     <h5>  user id is - {userid}  </h5>
     </>
-
 
 
     // <div> 

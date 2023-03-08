@@ -9,130 +9,142 @@ const Home = () => {
    const [data,setdata] = useState([]);
    const {state,dispatch} =  useContext(MainContext)
 
+    console.log('state in Home is  -',state);
 
-   useEffect(() => {
-     const config = {
-      headers : {
-        "Content-Type": "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem('jwt')
-      }
-     }
+  //  useEffect(() => {
+  //    const config = {
+  //     headers : {
+  //       "Content-Type": "application/json",
+  //       "Authorization" : "Bearer " + localStorage.getItem('jwt')
+  //     }
+  //    }
 
-     axios.get('/allpost' , config)
-     .then((res) =>  {  console.log('response in home -',res);
-      setdata(res.data.posts)
-      })
-   },[])
+  //    axios.get('/allpost' , config)
+  //    .then((res) =>  {  console.log('response in home -',res);
+  //     setdata(res.data.posts)
+  //     })
+  //  },[])
 
-   const likepost = (id) => {
+  //  const likepost = (id) => {
 
-    const config = {
-      headers : {
-        "Content-Type": "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem('jwt')
-      }
-     }
+  //   const config = {
+  //     headers : {
+  //       "Content-Type": "application/json",
+  //       "Authorization" : "Bearer " + localStorage.getItem('jwt')
+  //     }
+  //    }
 
-          axios.put('/like' , { postId : id
-          },config).then(res  =>  { 
-             console.log(' Like Post here',res)
+  //         axios.put('/like' , { postId : id
+  //         },config).then(res  =>  { 
+  //            console.log(' Like Post here',res)
 
-             const newdata = data.map(item => {
-              if(item._id == res._id){
-                return res
-              }else{
-               return item
-              }
-           })
-           setdata(newdata)
-           toast.success(' Liked the Post ')
+  //            const newdata = data.map(item => {
+  //             if(item._id == res._id){
+  //               return res
+  //             }else{
+  //              return item
+  //             }
+  //          })
+  //          setdata(newdata)
+  //          toast.success(' Liked the Post ')
 
-          })
-   }
+  //         })
+  //  }
 
-   const unlikepost = (id) => {
-    const config = {
-      headers : {
-        "Content-Type": "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem('jwt')
-      }
-     }
+  //  const unlikepost = (id) => {
+  //   const config = {
+  //     headers : {
+  //       "Content-Type": "application/json",
+  //       "Authorization" : "Bearer " + localStorage.getItem('jwt')
+  //     }
+  //    }
 
-          axios.put('/unlike' , {
-            postId : id 
-        },config).then(res => {
-          console.log(' UnLike post here  ',res)
+  //         axios.put('/unlike' , {
+  //           postId : id 
+  //       },config).then(res => {
+  //         console.log(' UnLike post here  ',res)
 
-          const newdata = data.map(item => {
-             if(item._id == res._id){
-               return res
-             }else{
-              return item
-             }
-          })
-          toast.success(' Unliked Post ')
-          setdata(newdata)
-        }).catch(err => {
-          console.log(err)
-        })
+  //         const newdata = data.map(item => {
+  //            if(item._id == res._id){
+  //              return res
+  //            }else{
+  //             return item
+  //            }
+  //         })
+  //         toast.success(' Unliked Post ')
+  //         setdata(newdata)
+  //       }).catch(err => {
+  //         console.log(err)
+  //       })
       
-   }
+  //  }
 
-   const makecomment = (text,postId) => {
+  //  const makecomment = (text,postId) => {
    
-    const config = {
-      headers : {
-        "Content-Type": "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem('jwt')
-      }
-     }
+  //   const config = {
+  //     headers : {
+  //       "Content-Type": "application/json",
+  //       "Authorization" : "Bearer " + localStorage.getItem('jwt')
+  //     }
+  //    }
 
-     axios.put('/comment' , {
-        postId : postId,
-        text : text 
-     },config)
-     .then(res => {
-         console.log(' Commented Done -',res)
-         const newdata = data.map(item => {
-           if(item._id == res._id){
-             return res
-            }else{
-              return item
-            }
-          })
-          toast.success(' Comment Done  ')
-          setdata(newdata)
-   }).catch(err => {
-       console.log('error is',err);
-   })
-   }
+  //    axios.put('/comment' , {
+  //       postId : postId,
+  //       text : text 
+  //    },config)
+  //    .then(res => {
+  //        console.log(' Commented Done -',res)
+  //        const newdata = data.map(item => {
+  //          if(item._id == res._id){
+  //            return res
+  //           }else{
+  //             return item
+  //           }
+  //         })
+  //         toast.success(' Comment Done  ')
+  //         setdata(newdata)
+  //  }).catch(err => {
+  //      console.log('error is',err);
+  //  })
+  //  }
 
-   const deletepost = (postid) => {
+  //  const deletepost = (postid) => {
 
-    const config = {
-      headers : {
-        "Content-Type": "application/json",
-        "Authorization" : "Bearer " + localStorage.getItem('jwt')
-      }
-     }
+  //   const config = {
+  //     headers : {
+  //       "Content-Type": "application/json",
+  //       "Authorization" : "Bearer " + localStorage.getItem('jwt')
+  //     }
+  //    }
 
-     axios.delete(`/deletepost/${postid}` ,config)
-     .then(res =>  {
-        console.log('  post deleted is ',res);
-        const newdata = data.filter(item => {
-           return item._id !== res._id
-        })
-        toast.success(' Post is Deleted Now ')
-        setdata(newdata)
-     })
+  //    axios.delete(`/deletepost/${postid}` ,config)
+  //    .then(res =>  {
+  //       console.log('  post deleted is ',res);
+  //       const newdata = data.filter(item => {
+  //          return item._id !== res._id
+  //       })
+  //       toast.success(' Post is Deleted Now ')
+  //       setdata(newdata)
+  //    })
 
-   }
+  //  }
+  
+   const statechange = JSON.stringify(state);
 
+  useEffect(() => {
+     console.log('inside the Effectccc ');
+  })
 
   return (
     <div>
+      <h5>   State in Home.js is - 
+        <span> 
+         {statechange} 
+        </span>
+         </h5> 
 
-           <div className = "home-outer-container" style = {{margin:'5% 15%',cursor:'pointer'}}> 
+          {console.log('inside Home ')}
+           {/* <div className = "home-outer-container" style = {{margin:'5% 15%',cursor:'pointer'}}> 
               <h3> All Public posts are shown here </h3>
 
               {console.log('data in phase is - ',data)}
@@ -197,7 +209,7 @@ const Home = () => {
                    </>
                     )} 
               )}
-          </div> 
+          </div>  */}
     </div>
   )
 }

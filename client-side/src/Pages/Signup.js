@@ -26,7 +26,6 @@ const Signup = () => {
       const { data } = await axios.post('/signup' , 
          {name,email,password} ,config );
          toast.success(' User  is Registered Successfully ')
-
          navigate('/login');
 
      }catch(error)
